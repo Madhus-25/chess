@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Chess</title>
+    <style>
+      table
+      {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      td
+      {
+        width: 50px;
+        height: 50px;
+      }
+      button
+      {
+        padding: 10px;
+        background-color: green;
+        font-size: 15px;
+        margin: 10px 0px 0px 550px;
+      }
+      #white
+      {
+        background-color: white;
+      }
+      #black
+      {
+        background-color: black;
+      }
+      #white:hover
+      {
+        background-color: blue;
+      }
+      #black:hover
+      {
+        background-color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="margin:50px 0px 0px 400px">Enter the no of rows : <input type="number" name="row" id="row"/></br></div>
+    <div style="margin:10px 0px 0px 400px">Enter the no of columns : <input type="number" name="col" id="col"/></br></div>
+
+    <div style="margin:10px 0px 0px 400px;display:flex">Start with :
+      <input type="radio"id="white"name="choice"value="White"/>
+      <label for="white">White</label>
+      <input type="radio"id="black"name="choice"value="Black"/>
+      <label for="black">Black</label>
+    </div>
+
+    <button onclick="createTable()">Submit</button>
+    <div style="display:flex;justify-content:center;margin-top:70px">
+      <div id="box"></div>
+      <div id="box1"></div>
+    </div>
+
+    <script>
+      function createTable()
+      {
+        var row = document.getElementById('row').value;
+        var col = document.getElementById('col').value;
+        
+        if(document.getElementById('white').checked)
+        {
+          var x = "<table>";
+          for(var i=0;i<row;i++)
+          {
+            x+="<tr>";
+            for(var j=0;j<col;j++)
+            {
+              if ((i+j)%2==1)
+              {
+                x+="<td id='black'></td>"
+              }
+              else
+              {
+                x+="<td id='white'></td>"
+              }
+            }
+            x+="</tr>";
+          }
+          x+="</table>";
+          document.getElementById("box").innerHTML = x;
+        }
+
+        else if(document.getElementById('black').checked)
+        {
+          var x = "<table>";
+          for(var i=0;i<row;i++)
+          {
+            x+="<tr>";
+            for(var j=0;j<col;j++)
+            {
+              if ((i+j)%2==0)
+              {
+                x+="<td id='black'></td>"
+              }
+              else
+              {
+                x+="<td id='white'></td>"
+              }
+            }
+            x+="</tr>";
+          }
+          x+="</table>";
+          document.getElementById("box").innerHTML = x;
+        }
+
+        x+="<table style='border:0;text-align:center'><tr>";
+        for(var k=0;k<col;k++)
+        {
+          x+="<td>"+String.fromCharCode(k+65)+"</td>";
+        }
+        x+="</tr></table>"
+        document.getElementById("box").innerHTML = x;
+
+        var y="<table style='border:0;text-align:center'><tr>";
+        for(var l=1;l<=col;l++)
+        {
+          y+="<tr><td>"+l+"</td></tr>";
+        }
+        y+="</tr></table>";
+        document.getElementById("box1").innerHTML = y;
+      }
+    </script>
+  </body>
+</html>
